@@ -44,7 +44,7 @@ while True:
             continue
         if points[i - 1] == points[i]:
             continue
-        cv2.line(canvas,(cx,cy),(cx,cy),(0,0,255),2)
+        cv2.line(canvas,points[i-1],points[i],(0,0,255),20)
     cv2.rectangle(img, (0, 0), (120, 60), (255, 255, 255), cv2.FILLED)
     cv2.putText(img, "CLEAR", (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 0), 2)
     imgFinal = cv2.addWeighted(img, 0.8, canvas, 1.0, 0)
@@ -54,6 +54,5 @@ while True:
         break
 cap.release()
 cv2.destroyAllWindows()
-
 
 
