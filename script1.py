@@ -23,8 +23,9 @@ while True:
     if canvas is None:
         canvas = np.zeros_like(img)
     imgHSV = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+    imgBlur = cv2.GaussianBlur(imgHSV, (3, 3), 0)
     lower , upper = getTrackbarValue()
-    mask = cv2.inRange(imgHSV, lower, upper)
+    mask = cv2.inRange(imgBlur, lower, upper)
     kernel = np.ones((5, 5), np.uint8)
     maskDialation = cv2.dilate(mask, kernel, iterations=1)
     maskEroded = cv2.erode(maskDialation, kernel, iterations=1)
