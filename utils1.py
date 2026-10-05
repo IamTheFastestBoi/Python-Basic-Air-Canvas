@@ -5,10 +5,11 @@ import numpy as np
 def getContours(imgMask , imgDisplay):
     contours, hierarchy = cv2.findContours(imgMask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
     cx, cy = None, None
-    for cnt in contours:
-        area = cv2.contourArea(cnt)
-        if area > 300:
-            x, y, w, h = cv2.boundingRect(cnt)
+    if len(contours) > 0:
+        biggestContour = max(contours, key=cv2.contourArea)
+        area = cv2.contourArea(biggestContour)
+        if area > 1000:
+            x, y, w, h = cv2.boundingRect(biggestContour)
             cx = x + (w // 2)
             cy = y + (h // 2)
             cv2.rectangle(imgDisplay, (x , y ), (x + w, y + h),2)
