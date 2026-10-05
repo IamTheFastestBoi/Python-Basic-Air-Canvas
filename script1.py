@@ -49,7 +49,7 @@ while True:
     cv2.putText(img, "CLEAR", (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 0), 2)
     imgFinal = cv2.addWeighted(img, 0.8, canvas, 1.0, 0)
     cv2.imshow("Air Canvas", imgFinal)
-    cv2.imshow("Mask", mask)
+    cv2.imshow("Mask", maskEroded)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 cap.release()
