@@ -26,8 +26,8 @@ while True:
     imgBlur = cv2.GaussianBlur(imgHSV, (3, 3), 0)
     lower , upper = getTrackbarValue()
     mask = cv2.inRange(imgBlur, lower, upper)
-    kernel = np.ones((5, 5), np.uint8)
-    maskDialation = cv2.dilate(mask, kernel, iterations=1)
+    kernel = np.ones((9, 9), np.uint8)
+    maskDialation = cv2.dilate(mask, kernel, iterations=2)
     maskEroded = cv2.erode(maskDialation, kernel, iterations=1)
     cx ,cy = getContours(maskEroded , img)
     if cx is not None and cy is not None:
